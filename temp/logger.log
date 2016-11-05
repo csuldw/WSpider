@@ -1,0 +1,54 @@
+2016-11-04 15:09:39,828 - mylogger - INFO - logger2 info message
+2016-11-04 15:09:48,279 - mylogger - INFO - logger2 info message
+2016-11-04 15:12:25,954 | mylogger | INFO | save captcha to local 
+2016-11-04 15:20:32,496 | mylogger | INFO | save captcha to local 
+2016-11-04 15:21:20,417 | mylogger | INFO | save captcha to local machine.
+2016-11-04 15:22:44,319 | mylogger | INFO | save captcha to local machine.
+2016-11-04 15:22:50,094 | mylogger | ERROR | Login Failed!
+2016-11-04 15:23:18,618 | mylogger | INFO | save captcha to local machine.
+2016-11-04 15:23:20,367 | mylogger | ERROR | Login Failed!
+2016-11-04 15:23:20,367 | mylogger | ERROR | Error info | 请填写验证码
+2016-11-04 15:23:43,046 | mylogger | INFO | save captcha to local machine.
+2016-11-04 15:23:44,234 | mylogger | ERROR | Login Failed!
+2016-11-04 15:23:44,234 | mylogger | ERROR | Error info ---> 提交过快，请稍后重试 :(
+2016-11-04 15:23:49,572 | mylogger | INFO | save captcha to local machine.
+2016-11-04 15:23:55,460 | mylogger | ERROR | Login Failed!
+2016-11-04 15:23:55,461 | mylogger | ERROR | Error info ---> 请提交正确的验证码 :(
+2016-11-05 09:55:01,313 | mylogger | INFO | save captcha to local machine.
+2016-11-05 09:55:13,969 | mylogger | INFO | Login success!
+2016-11-05 09:56:25,769 | mylogger | INFO | save captcha to local machine.
+2016-11-05 09:56:35,538 | mylogger | INFO | Login success!
+2016-11-05 10:09:30,473 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:09:38,322 | mylogger | ERROR | Login Failed!
+2016-11-05 10:09:38,323 | mylogger | ERROR | Error info ---> 该手机号尚未注册知乎
+2016-11-05 10:11:04,711 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:12:23,229 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:12:27,913 | mylogger | ERROR | Login Failed!
+2016-11-05 10:12:27,914 | mylogger | ERROR | Error info ---> email 对应的账户不存在
+2016-11-05 10:13:45,786 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:13:50,857 | mylogger | INFO | Login success!
+2016-11-05 10:24:02,375 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:24:14,996 | mylogger | INFO | Login success!
+2016-11-05 10:26:07,700 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:26:23,344 | mylogger | ERROR | Login Failed!
+2016-11-05 10:26:23,344 | mylogger | ERROR | Error info ---> email 对应的账户不存在
+2016-11-05 10:26:52,515 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:26:56,338 | mylogger | ERROR | Login Failed!
+2016-11-05 10:26:56,338 | mylogger | ERROR | Error info ---> 请输入 6-128 位的密码
+2016-11-05 10:27:36,424 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:27:41,101 | mylogger | ERROR | Login Failed!
+2016-11-05 10:27:41,101 | mylogger | ERROR | Error info ---> 请输入 6-128 位的密码
+2016-11-05 10:27:53,720 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:27:57,783 | mylogger | ERROR | Login Failed!
+2016-11-05 10:27:57,785 | mylogger | ERROR | Error info ---> 帐号或密码错误
+2016-11-05 10:28:52,257 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:28:55,910 | mylogger | ERROR | Login Failed!
+2016-11-05 10:28:55,910 | mylogger | ERROR | Error info ---> 请提交正确的验证码 :(
+2016-11-05 10:29:47,785 | mylogger | INFO | save captcha to local machine.
+2016-11-05 10:29:54,207 | mylogger | INFO | Login success!
+2016-11-05 14:54:45,253 | mylogger | INFO | save captcha to local machine.
+2016-11-05 14:55:01,868 | mylogger | INFO | Login success!
+2016-11-05 16:02:16,895 | mylogger | INFO | save captcha to local machine.
+2016-11-05 16:02:23,101 | mylogger | INFO | Login success!
+2016-11-05 16:04:26,969 | mylogger | INFO | save captcha to local machine.
+2016-11-05 16:04:37,394 | mylogger | INFO | Login success!
