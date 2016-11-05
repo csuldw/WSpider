@@ -17,6 +17,9 @@
 - out：存放输出的网页
 - temp：存放验证码
 
+## Contributor
+
+@author： [Diwei Liu](http://www.csuldw.com/about/)
 ---
 
 此项目将在后续持续更新，敬请关注，喜欢就给个Star吧。
