@@ -1,6 +1,6 @@
 ## 文件简介
 
-- zhiHuLogin.py：模拟登录知乎网，详细内容参见：[]()
+- zhiHuLogin.py：模拟登录知乎网，详细内容参见：[小试牛刀：使用Python模拟登录知乎](http://www.csuldw.com/2016/11/05/2016-11-05-simulate-zhihu-login/)
 - WSpider.pu：封装的WSpider类，包括日志输出函数
 
 ## 子项目
