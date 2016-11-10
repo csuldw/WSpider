@@ -1,0 +1,21 @@
+2016-11-10 20:58:57,257 | SinaClient | INFO | Start to login...
+2016-11-10 20:59:00,776 | SinaClient | INFO | Login success!
+2016-11-10 20:59:01,039 | SinaClient | INFO | Download html page to local machine. | path: out/info.html
+2016-11-10 20:59:49,920 | SinaClient | INFO | Start to login...
+2016-11-10 20:59:53,805 | SinaClient | INFO | Login success!
+2016-11-10 20:59:54,059 | SinaClient | INFO | Download html page to local machine. | path: out/info.html
+2016-11-10 21:00:34,270 | SinaClient | INFO | Login success!
+2016-11-10 21:00:35,697 | SinaClient | INFO | Download html page to local machine. | path: out/info.html
+2016-11-10 21:01:04,015 | SinaClient | INFO | Login success!
+2016-11-10 21:01:04,358 | SinaClient | INFO | Download html page to local machine. | path: out/info.html
+2016-11-10 21:01:38,913 | SinaClient | INFO | Login success!
+2016-11-10 21:01:39,273 | SinaClient | INFO | Download html page to local machine. | path: out/info.html
+2016-11-10 21:01:47,862 | SinaClient | INFO | Login success!
+2016-11-10 21:01:51,232 | SinaClient | INFO | Download html page to local machine. | path: out/info1.html
+2016-11-10 21:04:25,835 | SinaClient | INFO | Login success!
+2016-11-10 21:04:26,207 | SinaClient | INFO | Download html page to local machine. | path: out/info1.html
+2016-11-10 21:06:17,151 | SinaClient | INFO | Login success!
+2016-11-10 21:06:17,398 | SinaClient | INFO | Download html page to local machine. | path: out/follow.html
+2016-11-10 21:06:37,607 | SinaClient | INFO | Start to login...
+2016-11-10 21:06:39,950 | SinaClient | INFO | Login success!
+2016-11-10 21:06:40,155 | SinaClient | INFO | Download html page to local machine. | path: out/info2.html
