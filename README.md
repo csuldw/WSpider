@@ -6,7 +6,7 @@
 
 # 子项目
 
-## Mini爬虫
+## Mini小爬虫
 
 - conf.ini：用于配置proxies、headers等参数，其中Sina API的参数需设置成自己的；
 - dataEncode.py：用于模拟登录sina时提交的POST数据；
