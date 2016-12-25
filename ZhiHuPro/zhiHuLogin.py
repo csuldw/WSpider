@@ -5,8 +5,6 @@ Created on Thu Nov 02 17:07:17 2016
 @author: liudiwei
 """
 import os,sys
-parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, parentdir)
 import urllib
 from WSpider import WSpider
 from bs4 import BeautifulSoup as BS

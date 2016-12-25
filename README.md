@@ -1,5 +1,6 @@
 # Introduction
 
+- SinaWSpider：Mini爬虫爬取新浪数据，详细步骤参见[新浪微博数据爬取Part 3：小爬虫的诞生](http://www.csuldw.com/2016/12/25/2016-12-25-sina-spider-user-data-part3/)
 - SinaLogin：模拟登录新浪微博，详细步骤参见[模拟新浪微博登录-原理分析到实现](http://www.csuldw.com/2016/11/10/2016-11-10-simulate-sina-login/)
 - ZhiHuPro：模拟登录知乎网，详细内容参见：[小试牛刀：使用Python模拟登录知乎](http://www.csuldw.com/2016/11/05/2016-11-05-simulate-zhihu-login/)，
 
