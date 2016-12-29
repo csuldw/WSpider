@@ -12,6 +12,7 @@ import urllib2
 import re
 import random
 import time
+import socket
 from bs4 import BeautifulSoup as BS
 
 import dataEncode
@@ -47,7 +48,10 @@ class SinaClient(object):
         self.app_key = None
         #初始时调用initParams方法，初始化相关参数
         self.initParams()
-    
+        self.timeout = 3
+        socket.setdefaulttimeout(3)
+        self.tryTimes = 8
+
     #初始化参数
     def initParams(self):
         self.logger = LogClient().createLogger('SinaWSpider', myconf.log_out_path)
@@ -55,7 +59,7 @@ class SinaClient(object):
         self.access_token = myconf.access_token
         self.app_key = myconf.app_key
         return self
-    
+
     #设置username 和 password
     def setAccount(self, username, password):
         self.username = username
@@ -132,15 +136,17 @@ class SinaClient(object):
         return self
     
     #打开url时携带headers,此header需携带cookies
-    def openURL(self, url, data=None):
-        try:
-            self.logger.info("open url: " + url)
-            req = urllib2.Request(url, data=data, headers=self.headers)
-            text = urllib2.urlopen(req).read()
-        except Exception, e:
-            self.logger.error("openURL error, " + str(e))
-            self.switchUserAccount(myconf.userlist)
-            text = self.openURL(url, data=data)
+    def openURL(self, url, data=None, tryTimes=1):
+        text = ""
+        if tryTimes < self.tryTimes:
+            try:
+                self.logger.info("open url %s times: %s" %(str(tryTimes), url))
+                req = urllib2.Request(url, data=data, headers=self.headers)
+                text = urllib2.urlopen(req).read()
+            except Exception, e:
+                self.logger.error("openURL error, " + str(e))
+                self.switchUserAccount(myconf.userlist)
+                text = self.openURL(url, data=data, tryTimes = tryTimes+1)
         return text #self.unzip(text)
     
     #功能：将文本内容输出至本地
@@ -247,7 +253,8 @@ class SinaClient(object):
         next_url = re.findall('<div><a href="(.*?)">下页</a>&nbsp', text) #匹配"下页"内容
         if len(next_url) != 0:
             url_params = next_url[0].split("?")[-1] 
-            follows['follow_ids'].extend(self.getUserFollows(uid, params=url_params)["follow_ids"]) #将结果集合并
+            if url_params != params:
+                follows['follow_ids'].extend(self.getUserFollows(uid, params=url_params)["follow_ids"]) #将结果集合并
         return follows
     
     #获取用户粉丝对象UID列表 ulr = http://weibo.cn/%uid/fan?page=1
@@ -263,7 +270,8 @@ class SinaClient(object):
         next_url = re.findall('<div><a href="(.*?)">下页</a>&nbsp', text) #匹配"下页"内容
         if len(next_url) != 0:
             url_params = next_url[0].split("?")[-1]
-            fans['fans_ids'].extend(self.getUserFans(uid, params=url_params)["fans_ids"]) #将结果集合并
+            if url_params != params:
+                fans['fans_ids'].extend(self.getUserFans(uid, params=url_params)["fans_ids"]) #将结果集合并
         return fans
         
     #获取用户的发的微博信息
@@ -329,5 +337,6 @@ class SinaClient(object):
         next_url = re.findall('<div><a href="(.*?)">下页</a>&nbsp', text) #匹配"下页"内容
         if len(next_url) != 0 and len(tweets_all) < 200:
             url_params = next_url[0].split("?")[-1]
-            self.getUserTweets(uid, tweets_all, params=url_params)
+            if url_params != params:
+                self.getUserTweets(uid, tweets_all, params=url_params)
         return tweets_list
