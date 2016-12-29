@@ -10,6 +10,7 @@ import myconf
 import json
 import random
 import pymongo
+from MongoQueue import MongoQueue
 
 #初始化MongoDB
 def initMongoClient():
@@ -42,24 +43,24 @@ def spiderSinaData(session, db, uid):
         if collection.find_one({"uid": uid}) == None:    
             collection.insert(fans)
         
+        uidlist = list(set(uidlist).union(fans["fans_ids"]).union(follows["follow_ids"]))
+
         user_tweets = []
         session.getUserTweets(uid, user_tweets)
         collection = db.tweets
         for elem in user_tweets:
             if collection.find_one(elem) == None:
                 collection.insert(json.loads(elem))
-
-        uidlist = list(set(uidlist).union(fans["fans_ids"]).union(follows["follow_ids"]))
     except Exception,e:
         session.logger.error("spiderSinaData Exception! -->" + str(e) )
-        return []
+        return uidlist
     return uidlist
 
 def main():
     db = initMongoClient()
     client = slib.SinaClient()
     session = client.switchUserAccount(myconf.userlist)
-    uidpool = ["2006647941"] 
+    uidpool = ["5680443498"] #, 1656209093", "1669282904"]#qianyi me
     cnt = 0
     while len(uidpool):
         uid = random.choice(uidpool)
@@ -72,21 +73,53 @@ def main():
         session.logger.info("uidpool size: " + str(len(uidpool)))
     return cnt
 
+
+def main2():
+    mongo_queue = MongoQueue()
+    db = mongo_queue.db
+    client = slib.SinaClient()
+    session = client.switchUserAccount(myconf.userlist)
+    uid = "5680443498" #, 1656209093", "1669282904"]#qianyi me
+    cnt = 0
+    mongo_queue.push(uid)
+    while True:
+        cnt += 1
+        uid = mongo_queue.pop()
+        if uid == None:
+            session.logger.info("All of mongo_queue is scraped!")
+            break
+        session.logger.info("scraping " + str(cnt) + "th user, uid is " + uid)
+        uidlist = spiderSinaData(session, db, uid)
+        for wait_uid in uidlist:
+            mongo_queue.push(wait_uid)
+        mongo_queue.complete(uid)
+        
+
 #不使用MongoDB，直接将结果保存到本地
 def test():
     client = slib.SinaClient()
     session = client.switchUserAccount(myconf.userlist)
-    uidpool = ["3873827550", "1656209093", "1669282904"] #qianyi me
+    uidpool = ["3873827550", "2006647941"] #, 1656209093", "1669282904"]#qianyi me
     cnt = 0
     while len(uidpool):
         uid = random.choice(uidpool)
         cnt += 1
         session.logger.info("scraping " + str(cnt) + "th user, uid is " + uid)
         userinfo = session.getUserInfos(uid)    
-        session.output(json.dumps(userinfo), "output/%s/%s_info.json" %(uid, uid))
+        session.output(json.dumps(userinfo), "output1/%s/%s_info.json" %(uid, uid))
         uidpool.remove(uid)
-            
+
+def muti_process_main():
+    import multiprocessing
+    cpu_num = multiprocessing.cpu_count() 
+    processes = []
+    for i in range(1):
+        pro = multiprocessing.Process(target=main2)
+        pro.start()
+        processes.append(pro)
+    for p in processes:
+        p.join()
+
 if __name__ == '__main__':
-    #保存至MongoDB 调用main方法，只保存本地调用test方法
-    test()
+    muti_process_main()
     

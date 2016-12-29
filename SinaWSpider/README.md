@@ -1,5 +1,16 @@
-
 欢迎使用SinaWSpider爬虫，同步教程请参阅：[新浪微博数据爬取Part 3：小爬虫的诞生](http://www.csuldw.com/2016/12/25/2016-12-25-sina-spider-user-data-part3/)。
+
+# 20161228更新
+
+- 修改conf.ini文件，删除proxy变量；
+- 修改myconf.py，将proxy_pool从文件中读取，同时修改swithProxy()方法；
+- 增加MongoQueue.py文件，使用mongodb作为队列
+- 增加proxy目录，子目录spiderProxypy为爬取代理的代码，最终内容写入到当前的proxy.data中；
+- 修改main.py，增加多进程执行代码，进程数量为CPU个数；
+
+---
+
+# 20161225
 
 ## 文件说明
 

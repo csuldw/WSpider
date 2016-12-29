@@ -94,9 +94,10 @@ class SinaClient(object):
         self.cookiejar = cookielib.LWPCookieJar()  # 建立COOKIE
         cookie_support = urllib2.HTTPCookieProcessor(self.cookiejar)
         if enableProxy:
-            proxy_support = urllib2.ProxyHandler(myconf.proxies) # 使用代理
+            proxy = myconf.swithProxy()
+            proxy_support = urllib2.ProxyHandler(proxy) # 使用代理myconf.proxies
             opener = urllib2.build_opener(proxy_support, cookie_support, urllib2.HTTPHandler)
-            self.logger.info("Proxy enable.")
+            self.logger.info("Proxy enable, proxy is: " + str(proxy))
         else:
             opener = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
         urllib2.install_opener(opener)
@@ -109,13 +110,13 @@ class SinaClient(object):
         #根据用户名和密码给默认参数赋值,并初始化post_data
         self.setAccount(username, password) 
         self.setPostData()
-        self.enableCookie()
+        self.enableCookie(enableProxy=True)
         #登录时请求的url
         login_url = r'https://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.15)'
         headers = self.headers
-        request = urllib2.Request(login_url, urllib.urlencode(self.post_data), headers)
-        resText = urllib2.urlopen(request).read()
-        try:        
+        try:  
+            request = urllib2.Request(login_url, urllib.urlencode(self.post_data), headers)
+            resText = urllib2.urlopen(request).read()
             jsonText = json.loads(resText)
             if jsonText["retcode"] == "0":
                 self.logger.info("Login success!")
@@ -132,8 +133,14 @@ class SinaClient(object):
     
     #打开url时携带headers,此header需携带cookies
     def openURL(self, url, data=None):
-        req = urllib2.Request(url, data=data, headers=self.headers)
-        text = urllib2.urlopen(req).read()
+        try:
+            self.logger.info("open url: " + url)
+            req = urllib2.Request(url, data=data, headers=self.headers)
+            text = urllib2.urlopen(req).read()
+        except Exception, e:
+            self.logger.error("openURL error, " + str(e))
+            self.switchUserAccount(myconf.userlist)
+            text = self.openURL(url, data=data)
         return text #self.unzip(text)
     
     #功能：将文本内容输出至本地
@@ -232,7 +239,6 @@ class SinaClient(object):
         time.sleep(2)
         self.switchUserAgent()
         url = "http://weibo.cn/%s/follow?%s" %(uid, params)
-        self.logger.info("page is: " + url)
         text = self.openURL(url)
         soup = BS(text, "html.parser")
         res = soup.find_all('table')
@@ -249,7 +255,6 @@ class SinaClient(object):
         time.sleep(2)
         self.switchUserAgent()
         url = "http://weibo.cn/%s/fans?%s" %(uid, params)
-        self.logger.info("page is: " + url)
         text = self.openURL(url)
         soup = BS(text, "html.parser")
         res = soup.find_all('table')
@@ -265,7 +270,6 @@ class SinaClient(object):
     def getUserTweets(self, uid, tweets_all, params="page=1"):
         self.switchUserAccount(myconf.userlist)
         url = r"http://weibo.cn/%s/profile?%s" %(uid, params)
-        self.logger.info("URL path is: " + url)
         text = self.openURL(url)
         soup = BS(text, "html.parser")
         res = soup.find_all("div", {"class":"c"})
@@ -319,7 +323,7 @@ class SinaClient(object):
                 pass
             if tweets:
                 tweets_list.append(json.dumps(tweets))
-        self.output("\n".join(tweets_list), "output/" + uid + "/" + uid + "_tweets_" + params.replace("=", "") + ".json")
+        #self.output("\n".join(tweets_list), "output/" + uid + "/" + uid + "_tweets_" + params.replace("=", "") + ".json")
         tweets_all.extend(tweets_list)
 
         next_url = re.findall('<div><a href="(.*?)">下页</a>&nbsp', text) #匹配"下页"内容
