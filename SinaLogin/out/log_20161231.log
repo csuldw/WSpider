@@ -1,0 +1,10 @@
+2016-12-31 09:08:28,128 | SinaClient | INFO | Start to login...
+2016-12-31 09:09:32,187 | SinaClient | ERROR | Login Failed! | 登录名或密码错误
+2016-12-31 09:09:32,861 | SinaClient | INFO | Download html page to local machine. | path: out/follow.html
+2016-12-31 09:09:45,382 | SinaClient | INFO | Login success!
+2016-12-31 09:09:45,703 | SinaClient | INFO | Download html page to local machine. | path: out/follow.html
+2016-12-31 09:11:26,387 | SinaClient | INFO | Start to login...
+2016-12-31 09:11:43,249 | SinaClient | INFO | Login success!
+2016-12-31 09:11:43,753 | SinaClient | INFO | Download html page to local machine. | path: out/info2.html
+2016-12-31 09:12:05,207 | SinaClient | INFO | Login success!
+2016-12-31 09:12:05,517 | SinaClient | INFO | Download html page to local machine. | path: out/follow.html

@@ -92,6 +92,6 @@ headers = {
     "Content-Type" : "application/x-www-form-urlencoded",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Referer" : "https://login.sina.com.cn/signup/signin.php?entry=sso",
-    "Accept-Encoding" : "gzip, deflate, br",
+    "Accept-Encoding" : "deflate, br",
     "Accept-Language" : "en-GB,en;q=0.8,zh-CN;q=0.6,zh;q=0.4"
 }

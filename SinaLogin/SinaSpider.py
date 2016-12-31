@@ -129,7 +129,7 @@ class SinaClient(object):
     def openURL(self, url, data=None):
         req = urllib2.Request(url, data=data, headers=self.headers)
         text = urllib2.urlopen(req).read()
-        return self.unzip(text)
+        return text
     
     #功能：将文本内容输出至本地
     def output(self, content, out_path, save_mode="w"):
@@ -177,5 +177,5 @@ def testLogin2():
     client.output(info, "out/info2.html")    
     
 if __name__ == '__main__':
-    testLogin2()
+    testLogin()
     
